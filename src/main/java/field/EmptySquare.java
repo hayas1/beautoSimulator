@@ -58,13 +58,22 @@ public class EmptySquare extends FieldSquare {
 		final int fontSize = g.getFont().getSize();
 		final String point = Integer.toString(getPoint());
 		final int xShift = fontSize * point.length() / 2;
+		final int yShift = fontSize/2;
+
+		final Graphics gCopy = g.create();
+
+		if(getPoint() == Field.ANSWER_POINT) {
+			gCopy.setColor(Color.ORANGE);
+		} else if(getPoint() == Field.SAME_X_POINT) {
+			gCopy.setColor(Color.GREEN);
+		} else if(getPoint() == Field.SAME_Y_POINT) {
+			gCopy.setColor(Color.BLUE);
+		}
+		gCopy.drawString(point, xMid-xShift/2, yMid - yShift);
 
 		if(isBonus()) {
-			final Graphics gCopy = g.create();
 			gCopy.setColor(Color.CYAN);
-			gCopy.drawString(point + "+" + Field.BONUS_POINT, xMid-xShift, yMid);
-		} else {
-			g.drawString(point, xMid-xShift, yMid);
+			gCopy.drawString("+" + Field.BONUS_POINT, xMid-xShift, yMid+yShift);
 		}
 	}
 

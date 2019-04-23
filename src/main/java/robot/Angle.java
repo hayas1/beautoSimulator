@@ -64,11 +64,11 @@ public class Angle {
 		if(getNormalization() == EAST) {
 			return new Lattice(1, 0);
 		} else if(getNormalization() == SOUTH) {
-			return new Lattice(0, 1);
+			return new Lattice(0, -1);
 		} else if(getNormalization() == WEST) {
 			return new Lattice(-1, 0);
 		} else if(getNormalization() == NORTH) {
-			return new Lattice(0, -1);
+			return new Lattice(0, 1);
 		} else {
 			throw new UndefinedException("undefined arg to dimension: " + getNormalization());
 		}

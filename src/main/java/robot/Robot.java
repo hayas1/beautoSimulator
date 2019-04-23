@@ -2,6 +2,8 @@ package robot;
 
 import java.awt.Dimension;
 import java.awt.Polygon;
+import java.util.ArrayList;
+import java.util.List;
 
 import controll.Position;
 import field.Field;
@@ -17,19 +19,26 @@ import field.Field;
 
 
 public abstract class Robot implements Runnable {
-
 	private final Field field;
+	private final List<Parts> parts = new ArrayList<>();
+
 
 	public Robot(Field field) {
 		this.field = field;
 	}
 
 	public abstract void init();
+	public abstract void initAngle(Angle angle);
 	public abstract Position getPosition();
 	public abstract Angle getAngle();
 
 	public Field getField() {
 		return field;
+	}
+
+	@Override
+	public void run() {
+		//TODO パーツ全部動かす
 	}
 
 	//半径rの五角形をpositionを中心に作成
@@ -45,5 +54,18 @@ public abstract class Robot implements Runnable {
 		}
 		return new Polygon(x,y,5);
 	}
+
+	public void addParts(Parts parts) {
+		this.parts.add(parts);
+	}
+
+	public List<Parts> getParts() {
+		return parts;
+	}
+
+	//普通にboolean値で取得する方向で進める
+//	public void sensed(Parts parts) {
+//		return;		//センサーが反応したときの動作を記述する
+//	}
 
 }

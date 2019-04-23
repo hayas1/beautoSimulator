@@ -27,7 +27,12 @@ public abstract class NormalRobot extends Robot {
 	@Override
 	public void init() {
 		dimension = new Lattice(1, 1);
-		angle = new Angle(Angle.NORTH);
+		angle = new Angle(Angle.EAST);
+	}
+
+	@Override
+	public void initAngle(Angle angle) {
+		this.angle = angle;
 	}
 
 	@Override
@@ -48,19 +53,23 @@ public abstract class NormalRobot extends Robot {
 	public void forward() {		//1マス前進
 		dimension = dimension.plus(getAngle().toLattice());
 		getField().rangeCheck(getDimension());
+		getField().fieldUpdate();
 	}
 
 	public void backward() {		//1マス後進
 		dimension = dimension.minus(getAngle().toLattice());
 		getField().rangeCheck(getDimension());
+		getField().fieldUpdate();
 	}
 
 	public void clockwise() {		//時計回りに90度回転
 		angle = angle.plus(new Angle(90));
+		getField().fieldUpdate();
 	}
 
 	public void counterClockwise() {		//反時計回りに90度回転
 		angle = angle.minus(new Angle(90));
+		getField().fieldUpdate();
 	}
 
 

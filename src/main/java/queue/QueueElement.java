@@ -1,7 +1,9 @@
 package queue;
 
+import robot.Robot;
+
 public interface QueueElement {
 
-	public void excecute();
+	public void excecute(Robot robot);
 
 }

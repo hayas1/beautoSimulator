@@ -199,7 +199,7 @@ public class Field {
 	public List<Lattice> getMarkers() {
 		final List<Lattice> markers = new ArrayList<>();
 		for(int i=1; i<=getYSize(); i++) {
-			for(int j=1; j<=getYSize(); j++) {
+			for(int j=1; j<=getXSize(); j++) {
 				final Lattice lattice = new Lattice(j, i);
 				if(isMarker(lattice)) {
 					markers.add(lattice);
